@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="contenedor"> <!-- action ="Segun su enlace de APP Script de Google"-->
+    <form method="post" action="https://script.google.com/macros/s/AKfycbwHvzxmzJS8fKTXoMwqcb9nUEzucx3iK1yYTyoAZEOmN28bSZSwuU_2SMqp_76rRWVb/exec" name="excel-form">
+        <h4>CONTÁCTANOS</h4>
+        <input type="text" name="Nombre" placeholder="Nombre Completo"> <br>
+        <input type="number" name="Telefono" placeholder="Número de Teléfono"> <br>
+        <input type="email" name="Correo Electronico" placeholder="Correo Electrónico"> <br>
+        <textarea name="Mensaje" rows="7" id="Escribe tu comentario"></textarea> <br>
+        <input type="submit" value="ENVIAR" id="submit"> 
+    </form>
+</div>
+<style>
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(63, 63, 63);
+}
+
+.contenedor{
+    width: 500px;
+    background-color: rgb(22, 72, 212);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+h4{
+    font-size: 24px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+textarea{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#submit{
+    background-color: orangered;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#submit:hover{
+    background-color: rgb(243, 88, 31);
+}
+</style>
+<script>
+    //scriptURL ="Segun su enlace de APP Script de Google"
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwHvzxmzJS8fKTXoMwqcb9nUEzucx3iK1yYTyoAZEOmN28bSZSwuU_2SMqp_76rRWVb/exec'
+    const form = document.forms['excel-form'] //mismo nombre que "name" de <form>
+    form.addEventListener('submit', e =>{
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => alert("Datos del Formulario Enviados")) /*Enviar msj de Alerta*/
+        .then(() => { window.location.reload();}) /*Limpiar datos del formulario*/
+        .catch(error => console.error('Error en enviar los datos!', error.message))
+    })
+</script>
+</body>
+</html>
